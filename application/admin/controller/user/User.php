@@ -2,11 +2,11 @@
 
 namespace app\admin\controller\user;
 
+use app\admin\model\UserGroup;
 use app\common\controller\Backend;
 
 /**
  * 会员管理
- *
  * @icon fa fa-user
  */
 class User extends Backend
@@ -32,31 +32,28 @@ class User extends Backend
     {
         //设置过滤方法
         $this->request->filter(['strip_tags']);
-        if ($this->request->isAjax())
-        {
+        if ($this->request->isAjax()) {
             //如果发送的来源是Selectpage，则转发到Selectpage
-            if ($this->request->request('keyField'))
-            {
+            if ($this->request->request('keyField')) {
                 return $this->selectpage();
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
-                    ->with('group')
-                    ->where($where)
-                    ->order($sort, $order)
-                    ->count();
+                ->with('group')
+                ->where($where)
+                ->order($sort, $order)
+                ->count();
             $list = $this->model
-                    ->with('group')
-                    ->where($where)
-                    ->order($sort, $order)
-                    ->limit($offset, $limit)
-                    ->select();
-            foreach ($list as $k => $v)
-            {
-                $v->hidden(['password', 'salt']);
-            }
+                ->with('group')
+                ->where($where)
+                ->order($sort, $order)
+                ->limit($offset, $limit)
+                ->select();
+//            foreach ($list as $k => $v) {
+//               // $v->hidden();
+//            }
+            //return dump($list);
             $result = array("total" => $total, "rows" => $list);
-
             return json($result);
         }
         return $this->view->fetch();
@@ -74,4 +71,12 @@ class User extends Backend
         return parent::edit($ids);
     }
 
+    public function add()
+    {
+
+        $column = UserGroup::column('id,name');
+        $grouplist = build_select('row[group_id]', $column, '0', ['class' => 'form-control selectpicker']);
+        $this->view->assign('groupList',$grouplist);
+        return parent::add();
+    }
 }
