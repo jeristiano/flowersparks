@@ -15,10 +15,7 @@ return array (
   'fixedpage' => 'dashboard',
   'categorytype' => 
   array (
-    'default' => 'Default',
-    'page' => 'Page',
-    'article' => 'Article',
-    'test' => 'Test',
+    'flower' => '花卉',
   ),
   'configgroup' => 
   array (

@@ -1,35 +1,43 @@
 <?php
 
-namespace app\admin\controller\user;
+namespace app\admin\controller;
 
-use app\admin\model\UserGroup;
 use app\common\controller\Backend;
-
+use \app\admin\model\Category;
 /**
- * 会员管理
- * @icon fa fa-user
+ * 花卉管理
+ * @icon fa fa-circle-o
  */
-class User extends Backend
+class Flower extends Backend
 {
 
-    protected $relationSearch = true;
-
     /**
-     * User模型对象
+     * Flower模型对象
+     * @var \app\admin\model\Flower
      */
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('User');
+        $this->model = model('Flower');
+
     }
+
+    /**
+     * 默认生成的控制器所继承的父类中有index/add/edit/del/multi五个基础方法、destroy/restore/recyclebin三个回收站方法
+     * 因此在当前控制器中可不用编写增删改查的代码,除非需要自己控制这部分逻辑
+     * 需要将application/admin/library/traits/Backend.php中对应的方法复制到当前控制器,然后进行修改
+     */
+
 
     /**
      * 查看
      */
     public function index()
     {
+        //当前是否为关联查询
+        $this->relationSearch = true;
         //设置过滤方法
         $this->request->filter(['strip_tags']);
         if ($this->request->isAjax()) {
@@ -39,43 +47,35 @@ class User extends Backend
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
-                ->with('group')
+                ->with(['category'])
                 ->where($where)
                 ->order($sort, $order)
                 ->count();
+
             $list = $this->model
-                ->with('group')
+                ->with(['category'])
                 ->where($where)
                 ->order($sort, $order)
                 ->limit($offset, $limit)
                 ->select();
-//            foreach ($list as $k => $v) {
-//               // $v->hidden();
-//            }
+
+            foreach ($list as $row) {
+
+
+            }
+            $list = collection($list)->toArray();
             $result = array("total" => $total, "rows" => $list);
+
             return json($result);
         }
         return $this->view->fetch();
     }
 
-    /**
-     * 编辑
-     */
-    public function edit($ids = NULL)
-    {
-        $row = $this->model->get($ids);
-        if (!$row)
-            $this->error(__('No Results were found'));
-        $this->view->assign('groupList', build_select('row[group_id]', \app\admin\model\UserGroup::column('id,name'), $row['group_id'], ['class' => 'form-control selectpicker']));
-        return parent::edit($ids);
-    }
-
     public function add()
     {
-
-        $column = UserGroup::column('id,name');
-        $grouplist = build_select('row[group_id]', $column, '0', ['class' => 'form-control selectpicker']);
-        $this->view->assign('groupList',$grouplist);
+        $column=Category::where('type','=','flower')->column('id,name');
+        $grouplist = build_select('row[cate_id]', $column, '0', ['class' => 'form-control selectpicker']);
+        $this->view->assign('cagegoryList', $grouplist);
         return parent::add();
     }
 }
