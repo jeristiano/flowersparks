@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'Order_id'  =>  '订单ID',
+    'Order_sn'  =>  '订单编号',
+    'Flower_id'  =>  '花卉id',
+    'User_id'  =>  '客户id',
+    'Price'  =>  '单价',
+    'Amount'  =>  '购买数量',
+    'Subtotal'  =>  '合计',
+    'Create_time'  =>  '创建时间',
+    'Paid_time'  =>  '支付时间',
+    'If_paid'  =>  '是否已付款',
+    'Flower.id'  =>  '主键id',
+    'Flower.name'  =>  '花名',
+    'Flower.cate_id'  =>  '分类',
+    'Flower.avatar'  =>  '图片',
+    'Flower.introduction'  =>  '介绍',
+    'User.id'  =>  'ID',
+    'User.group_id'  =>  '组别ID',
+    'User.username'  =>  '用户名',
+    'User.nickname'  =>  '昵称',
+    'User.email'  =>  '电子邮箱',
+    'User.mobile'  =>  '手机号',
+    'User.avatar'  =>  '头像',
+    'User.gender'  =>  '性别',
+    'User.birthday'  =>  '生日',
+    'User.createtime'  =>  '创建时间',
+    'User.updatetime'  =>  '更新时间',
+    'User.status'  =>  '状态'
+];
