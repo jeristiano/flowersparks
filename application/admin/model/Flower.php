@@ -20,14 +20,6 @@ class Flower extends Model
     protected $append = [
 
     ];
-    
-
-    
-
-
-
-
-
 
 
     public function category()
