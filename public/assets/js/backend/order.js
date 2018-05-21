@@ -6,12 +6,28 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'order/index',
+                    show_url: 'order/show',
                     add_url: 'order/add',
                     edit_url: 'order/edit',
                     del_url: 'order/del',
                     multi_url: 'order/multi',
                     table: 'order',
-                }
+                },
+                // 单元格元素事件
+                events: {
+                    operate: {
+                        'click .btn-showone': function (e, value, row, index) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            var table = $(this).closest('table');
+                            var options = table.bootstrapTable('getOptions');
+                            var ids = row[options.pk];
+                            row = $.extend({}, row ? row : {}, {ids: ids});
+                            var url = options.extend.show_url;
+                            Fast.api.open(Table.api.replaceurl(url, row, table), __('Detail'), $(this).data() || {});
+                        },
+                                            }
+                },
             });
 
             var table = $("#table");
@@ -61,6 +77,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
             // 为表格绑定事件
             Table.api.bindevent(table);
+        },
+        show:function () {
+            Controller.api.bindevent();
         },
         add: function () {
             Controller.api.bindevent();
