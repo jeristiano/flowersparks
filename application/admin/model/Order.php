@@ -8,35 +8,26 @@ class Order extends Model
 {
     // 表名
     protected $name = 'order';
-    
+
     // 自动写入时间戳字段
     protected $autoWriteTimestamp = false;
 
     // 定义时间戳字段名
     protected $createTime = false;
     protected $updateTime = false;
-    
-    // 追加属性
-    protected $append = [
-        'if_paid_text'
-    ];
-    
 
-    
+
     public function getIfPaidList()
     {
-        return ['0' => __('If_paid 0'),'1' => __('If_paid 1')];
-    }     
-
-
-    public function getIfPaidTextAttr($value, $data)
-    {        
-        $value = $value ? $value : $data['if_paid'];
-        $list = $this->getIfPaidList();
-        return isset($list[$value]) ? $list[$value] : '';
+        return ['0' => __('If_paid 0'), '1' => __('If_paid 1')];
     }
 
 
+    public function getIfPaidAttr($value, $data)
+    {
+        $paid = $this->getIfPaidList();
+        return $value == 1 ? $paid[1] : $paid[0];
+    }
 
 
     public function flower()
@@ -48,5 +39,14 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo('User', 'user_id', 'id', [], 'LEFT')->setEagerlyType(0);
+    }
+
+    //生成订单号
+    public static function makeOrderNo()
+    {
+        $yCode = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
+        $orderSn = $yCode[intval(date('Y') - 2017)] . strtoupper(dechex(date('m'))) . date('d') . substr
+            (time(), -5) . substr(microtime(), 2, 5) . sprintf('%02d', rand(0, 99));
+        return $orderSn;
     }
 }

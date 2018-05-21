@@ -8,9 +8,9 @@ return [
     'Price'  =>  '单价',
     'Amount'  =>  '购买数量',
     'Subtotal'  =>  '合计',
-    'Create_time'  =>  '创建时间',
+    'Create_time'  =>  '下单时间',
     'Paid_time'  =>  '支付时间',
-    'If_paid'  =>  '是否已付款',
+    'If_paid'  =>  '是否付款',
     'Flower.id'  =>  '主键id',
     'Flower.name'  =>  '花名',
     'Flower.cate_id'  =>  '分类',
@@ -27,5 +27,8 @@ return [
     'User.birthday'  =>  '生日',
     'User.createtime'  =>  '创建时间',
     'User.updatetime'  =>  '更新时间',
-    'User.status'  =>  '状态'
+    'User.status'  =>  '状态',
+    'Client_name'=>'客户名',
+    'if_paid 0'=>'未付款',
+    'if_paid 1'=>'已付款'
 ];
