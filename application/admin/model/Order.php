@@ -41,6 +41,7 @@ class Order extends Model
         return $this->belongsTo('User', 'user_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 
+    //尝试执行事物event(类似于laravel中的模型检测器)
     //生成订单号
     public static function makeOrderNo()
     {
