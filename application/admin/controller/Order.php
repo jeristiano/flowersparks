@@ -69,14 +69,24 @@ class Order extends Backend
 
     public function add()
     {
-        if(!$this->request->isPost()){
-           $order_bn=$this->model->makeOrderNo();
-          $params = $this->request->post("row/a");
-           if($params){
-               $params['order_bn']=$order_bn;
-           }
+        if ($this->request->isPost()) {
+            $order_bn = $this->model->makeOrderNo();
+            $params = $this->request->post("row/a");
+            if ($params) {
+                $this->model->order_bn = $order_bn;
+                $params['order_sn'] = $order_bn;
+            }
+
+            $result = $this->model->allowField(true)->save($params);
+            if($result){
+                $this->success();
+            }else{
+                $this->error($this->model->getError());
+            }
         }
-        return parent::add();
+
+        return $this->view->fetch();
 
     }
+
 }

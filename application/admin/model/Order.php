@@ -10,13 +10,16 @@ class Order extends Model
     protected $name = 'order';
 
     // 自动写入时间戳字段
-    protected $autoWriteTimestamp = false;
+    protected $autoWriteTimestamp = true;
 
     // 定义时间戳字段名
-    protected $createTime = false;
+    protected $createTime = 'create_time';
     protected $updateTime = false;
 
 
+    public function setPaidTimeAttr($value,$data){
+            return $value?strtotime($value):$value;
+    }
     public function getIfPaidList()
     {
         return ['0' => __('If_paid 0'), '1' => __('If_paid 1')];

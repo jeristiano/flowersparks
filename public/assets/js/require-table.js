@@ -442,7 +442,7 @@ define(['jquery', 'bootstrap', 'moment', 'moment/locale/zh-cn', 'bootstrap-table
                     return Table.api.formatter.flag.call(this, value, row, index);
                 },
                 datetime: function (value, row, index) {
-                    return value ? Moment(parseInt(value) * 1000).format("YYYY-MM-DD HH:mm:ss") : __('None');
+                    return value ? Moment(parseInt(value) * 1000).format("YYYY-MM-DD HH:mm") : __('None');
                 },
                 operate: function (value, row, index) {
                     var table = this.table;
