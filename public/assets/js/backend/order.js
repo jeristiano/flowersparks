@@ -65,6 +65,27 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     $('#c-paid_time').attr('disabled','disabled');
                 }
             });
+
+
+            var priceObj=$('#c-price');
+            var amountObj=$('#c-amount');
+            var subtotalObj=$('#c-subtotal');
+            priceObj.change(function () {
+                if(amountObj.val()!==0){
+                    var price=priceObj.val();
+                    var amount=amountObj.val();
+                    subtotalObj.val(price*amount);
+                }
+            });
+
+            amountObj.change(function () {
+                if(priceObj.val()!==0){
+                    var price=priceObj.val();
+                    var amount=amountObj.val();
+                    subtotalObj.val(price*amount);
+                }
+            });
+
             Controller.api.bindevent();
         },
         edit: function () {
