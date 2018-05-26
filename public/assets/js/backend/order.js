@@ -47,6 +47,24 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.bindevent(table);
         },
         add: function () {
+            var checkText=$("input[type=radio]").val();
+            if(checkText==0){
+                $('#c-paid_time').attr('disabled','disabled');
+            }else{
+                $('#c-paid_time').attr('disabled',false);
+                $('#paid_time-control').hide();
+            }
+            //添加单机事件
+            $("input[type=radio]").click(function () {
+                var checkText=$("input[type=radio]:checked").val();
+                if(checkText==1){
+                    $('#c-paid_time').attr('disabled',false);
+                    $('#paid_time-control').show();
+                }else{
+                    $('#paid_time-control').hide();
+                    $('#c-paid_time').attr('disabled','disabled');
+                }
+            });
             Controller.api.bindevent();
         },
         edit: function () {

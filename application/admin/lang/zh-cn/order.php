@@ -5,6 +5,7 @@ return [
     'Order_sn'  =>  '订单编号',
     'Flower_id'  =>  '花卉id',
     'User_id'  =>  '客户id',
+    'User_name'  =>  '客户',
     'Price'  =>  '单价',
     'Amount'  =>  '购买数量',
     'Subtotal'  =>  '合计',
