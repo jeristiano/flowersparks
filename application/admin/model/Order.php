@@ -10,26 +10,36 @@ class Order extends Model
     protected $name = 'order';
 
     // 自动写入时间戳字段
-    protected $autoWriteTimestamp = true;
+    protected $autoWriteTimestamp = false;
 
     // 定义时间戳字段名
     protected $createTime = 'create_time';
     protected $updateTime = false;
+// 追加属性
+    protected $append = [
+        'if_paid_text'
+    ];
 
-
-    public function setPaidTimeAttr($value,$data){
-            return $value?strtotime($value):$value;
+    public function setPaidTimeAttr($value, $data)
+    {
+        return $value && !is_numeric($value) ? strtotime($value) : $value;
     }
+
+    public function setCreateTimeAttr($value, $data)
+    {
+        return $value && !is_numeric($value) ? strtotime($value) : $value;
+    }
+
     public function getIfPaidList()
     {
         return ['0' => __('If_paid 0'), '1' => __('If_paid 1')];
     }
 
-
-    public function getIfPaidAttr($value, $data)
+    public function getIfPaidTextAttr($value, $data)
     {
-        $paid = $this->getIfPaidList();
-        return $value == 1 ? $paid[1] : $paid[0];
+        $value = $value ? $value : $data['if_paid'];
+        $list = $this->getIfPaidList();
+        return isset($list[$value]) ? $list[$value] : '';
     }
 
 

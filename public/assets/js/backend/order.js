@@ -34,8 +34,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'subtotal', title: __('Subtotal')+'(元)'},
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'paid_time', title: __('Paid_time'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
-                        {field: 'if_paid', title: __('If_paid'), visible:true,formatter: Table.api.formatter.status,custom:{'已付款':'success',"未付款":'danger'},searchList: {"0":__('If_paid 0'),"1":__('If_paid' +
-                ' 1')}},
+                        {field: 'if_paid_text', title: __('If_paid'), visible:true,formatter: Table.api.formatter.status,custom:{'已付款':'success',"未付款":'danger'}},
+                        {field: 'if_paid', title: __('If_paid'), visible:false,formatter: Table.api.formatter.status,searchList: {"0":__('If_paid 0'),"1":__('If_paid' + ' 1')}},
                         {field: 'operate', title: __('Operate'), buttons: [
                             {name: 'detail', text: '', title: '详情', icon: 'fa fa-list', classname: 'btn btn-xs btn-primary btn-dialog', url: 'order/detail'}
                         ],table:table,events: Table.api.events.operate, formatter: Table.api.formatter.operate,}
@@ -89,6 +89,45 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Controller.api.bindevent();
         },
         edit: function () {
+            var checkText=$("input[type=radio]:checked").val();
+            console.log(checkText)
+            if(checkText==0){
+                $('#c-paid_time').attr('disabled','disabled');
+            }else{
+                $('#c-paid_time').attr('disabled',false);
+                $('#paid_time-control').show();
+            }
+            //添加单机事件
+            $("input[type=radio]").click(function () {
+                var checkText=$("input[type=radio]:checked").val();
+                if(checkText==1){
+                    $('#c-paid_time').attr('disabled',false);
+                    $('#paid_time-control').show();
+                }else{
+                    $('#paid_time-control').hide();
+                    $('#c-paid_time').attr('disabled','disabled');
+                }
+            });
+
+
+            var priceObj=$('#c-price');
+            var amountObj=$('#c-amount');
+            var subtotalObj=$('#c-subtotal');
+            priceObj.change(function () {
+                if(amountObj.val()!==0){
+                    var price=priceObj.val();
+                    var amount=amountObj.val();
+                    subtotalObj.val(price*amount);
+                }
+            });
+
+            amountObj.change(function () {
+                if(priceObj.val()!==0){
+                    var price=priceObj.val();
+                    var amount=amountObj.val();
+                    subtotalObj.val(price*amount);
+                }
+            });
             Controller.api.bindevent();
         },
         api: {
