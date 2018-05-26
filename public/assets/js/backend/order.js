@@ -36,9 +36,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'paid_time', title: __('Paid_time'), operate:'RANGE', addclass:'datetimerange', formatter: Table.api.formatter.datetime},
                         {field: 'if_paid_text', title: __('If_paid'), visible:true,formatter: Table.api.formatter.status,custom:{'已付款':'success',"未付款":'danger'}},
                         {field: 'if_paid', title: __('If_paid'), visible:false,formatter: Table.api.formatter.status,searchList: {"0":__('If_paid 0'),"1":__('If_paid' + ' 1')}},
-                        {field: 'operate', title: __('Operate'), buttons: [
-                            {name: 'detail', text: '', title: '详情', icon: 'fa fa-list', classname: 'btn btn-xs btn-primary btn-dialog', url: 'order/detail'}
-                        ],table:table,events: Table.api.events.operate, formatter: Table.api.formatter.operate,}
+                        {field: 'operate', title: __('Operate'),table:table,events: Table.api.events.operate, formatter: Table.api.formatter.operate}
                     ]
                 ]
             });
@@ -74,7 +72,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 if(amountObj.val()!==0){
                     var price=priceObj.val();
                     var amount=amountObj.val();
-                    subtotalObj.val(price*amount);
+                    var subtotal=(price*amount).toFixed(2);
+                    subtotalObj.val(subtotal);
                 }
             });
 
@@ -82,7 +81,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 if(priceObj.val()!==0){
                     var price=priceObj.val();
                     var amount=amountObj.val();
-                    subtotalObj.val(price*amount);
+                    var subtotal=(price*amount).toFixed(2);
+                    subtotalObj.val(subtotal);
                 }
             });
 
@@ -117,7 +117,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 if(amountObj.val()!==0){
                     var price=priceObj.val();
                     var amount=amountObj.val();
-                    subtotalObj.val(price*amount);
+                    var subtotal=(price*amount).toFixed(2);
+                    subtotalObj.val(subtotal);
                 }
             });
 
@@ -125,7 +126,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 if(priceObj.val()!==0){
                     var price=priceObj.val();
                     var amount=amountObj.val();
-                    subtotalObj.val(price*amount);
+                    var subtotal=(price*amount).toFixed(2);
+                    subtotalObj.val(subtotal);
                 }
             });
             Controller.api.bindevent();
