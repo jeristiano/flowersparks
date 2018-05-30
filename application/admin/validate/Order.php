@@ -12,6 +12,15 @@ class Order extends Validate
      * 验证
      */
     protected $rule = [
+        'user_id'=>'require|int',
+        'flower_id'=>'require|int',
+        'order_sn'=>'require',
+        'price'=>'require|float',
+        'amount'=>'require|int',
+        'subtotal'=>'require|number',
+        'if_paid'=>'require|in:1,0',
+        'createtime'=>'require',
+        'paid_time'=>'lt:createtime'
     ];
     /**
      * 提示消息
@@ -23,8 +32,8 @@ class Order extends Validate
      * 验证场景
      */
     protected $scene = [
-        'add'  => [],
-        'edit' => [],
+        'add'  => ['user_id','flower_id','price','amount','subtotal','if_paid'],
+        'edit' => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid','createtime','paid_time'],
     ];
     
 }
