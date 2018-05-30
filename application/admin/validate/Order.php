@@ -12,14 +12,14 @@ class Order extends Validate
      * 验证
      */
     protected $rule = [
-        'user_id'=>'require|int',
-        'flower_id'=>'require|int',
+        'user_id'=>'require|number',
+        'flower_id'=>'require|number',
         'order_sn'=>'require',
         'price'=>'require|float',
-        'amount'=>'require|int',
+        'amount'=>'require|number',
         'subtotal'=>'require|number',
         'if_paid'=>'require|in:1,0',
-        'createtime'=>'require',
+        'createtime'=>'require|datetime',
         'paid_time'=>'lt:createtime'
     ];
     /**
