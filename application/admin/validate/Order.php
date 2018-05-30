@@ -32,7 +32,7 @@ class Order extends Validate
      * 验证场景
      */
     protected $scene = [
-        'add'  => ['user_id','flower_id','price','amount','subtotal','if_paid'],
+        'add'  => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid'],
         'edit' => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid','createtime','paid_time'],
     ];
     
