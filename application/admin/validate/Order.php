@@ -12,6 +12,7 @@ class Order extends Validate
      * 验证
      */
     protected $rule = [
+
         'user_id'=>'require|number',
         'flower_id'=>'require|number',
         'order_sn'=>'require',
@@ -21,6 +22,7 @@ class Order extends Validate
         'if_paid'=>'require|in:1,0',
         'createtime'=>'require|datetime',
         'paid_time'=>'lt:createtime'
+
     ];
     /**
      * 提示消息
