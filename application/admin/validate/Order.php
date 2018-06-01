@@ -20,14 +20,18 @@ class Order extends Validate
         'amount'=>'require|number',
         'subtotal'=>'require|number',
         'if_paid'=>'require|in:1,0',
-        'createtime'=>'require|datetime',
-        'paid_time'=>'lt:createtime'
+        'create_time'=>'require|date',
+        'paid_time'=>'gt:create_time'
 
     ];
     /**
      * 提示消息
      */
     protected $message = [
+        'price'=>'单价格式有误',
+        'amount'=>'数量格式有误',
+        'subtotal'=>'总价格式有误',
+        'paid_time'=>'支付时间必须大于下单时间'
 
     ];
     /**
@@ -35,7 +39,7 @@ class Order extends Validate
      */
     protected $scene = [
         'add'  => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid'],
-        'edit' => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid','createtime','paid_time'],
+        'edit' => ['order_sn','user_id','flower_id','price','amount','subtotal','if_paid','create_time','paid_time'],
     ];
     
 }

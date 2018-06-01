@@ -94,4 +94,12 @@ class Order extends Backend
 
     }
 
+    public function edit($ids=null)
+    {
+        $this->modelValidate=true;
+        $this->modelSceneValidate='edit';
+        return parent::edit($ids);
+
+    }
+
 }
