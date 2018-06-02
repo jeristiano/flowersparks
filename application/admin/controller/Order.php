@@ -96,6 +96,7 @@ class Order extends Backend
 
     public function edit($ids=null)
     {
+        //使用系统提供的验证器
         $this->modelValidate=true;
         $this->modelSceneValidate='edit';
         return parent::edit($ids);
