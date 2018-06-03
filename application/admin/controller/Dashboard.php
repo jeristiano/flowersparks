@@ -14,6 +14,7 @@ use think\Config;
 class Dashboard extends Backend
 {
 
+    //todo 开始开发统计功能
     /**
      * 查看
      */
@@ -42,8 +43,8 @@ class Dashboard extends Backend
             'todayusersignup'  => 430,
             'todayorder'       => 2324,
             'unsettleorder'    => 132,
-            'sevendnu'         => '80%',
-            'sevendau'         => '32%',
+            'sevendnu'         => '77%',
+            'sevendau'         => '77%',
             'paylist'          => $paylist,
             'createlist'       => $createlist,
             'addonversion'       => $addonVersion,
