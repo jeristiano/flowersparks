@@ -5,7 +5,7 @@ return [
     'Pid'                     => '父ID',
     'Type'                    => '栏目类型',
     'Image'                   => '图片',
-    'Total user'              => '总会员数',
+    'Total user'              => '总客户数',
     'Total view'              => '总访问数',
     'Total order'             => '总订单数',
     'Total order amount'      => '总金额',
@@ -42,4 +42,5 @@ return [
     'Cdn url'                 => '静态资源CDN',
     'Timezone'                => '时区',
     'Language'                => '语言',
+    'this_year'=>'今年'
 ];

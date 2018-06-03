@@ -3,6 +3,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\Backend;
+use fast\Date;
 use think\Config;
 
 /**
@@ -28,6 +29,8 @@ class Dashboard extends Backend
             $createlist[$day] = mt_rand(20, 200);
             $paylist[$day] = mt_rand(1, mt_rand(1, $createlist[$day]));
         }
+        $today=time();
+        $thisYear=date('Y',$today);
         $hooks = config('addons.hooks');
         $uploadmode = isset($hooks['upload_config_init']) && $hooks['upload_config_init'] ? implode(',', $hooks['upload_config_init']) : 'local';
         $addonComposerCfg = ROOT_PATH . '/vendor/karsonzhang/fastadmin-addons/composer.json';
@@ -48,7 +51,8 @@ class Dashboard extends Backend
             'paylist'          => $paylist,
             'createlist'       => $createlist,
             'addonversion'       => $addonVersion,
-            'uploadmode'       => $uploadmode
+            'uploadmode'       => $uploadmode,
+            'thisyear'=>$thisYear
         ]);
 
         return $this->view->fetch();
