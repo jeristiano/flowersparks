@@ -42,5 +42,6 @@ return [
     'Cdn url'                 => '静态资源CDN',
     'Timezone'                => '时区',
     'Language'                => '语言',
-    'this_year'=>'今年'
+    'this_year'=>'今年',
+    'Total_Average_price'=>'平均售价'
 ];

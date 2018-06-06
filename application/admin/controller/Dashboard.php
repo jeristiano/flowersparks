@@ -2,6 +2,7 @@
 
 namespace app\admin\controller;
 
+use app\admin\model\Calculate;
 use app\common\controller\Backend;
 use fast\Date;
 use think\Config;
@@ -21,6 +22,7 @@ class Dashboard extends Backend
      */
     public function index()
     {
+       return Calculate::countUsersTotalAmountThisYear();
         $seventtime = \fast\Date::unixtime('day', -7);
         $paylist = $createlist = [];
         for ($i = 0; $i < 7; $i++)
