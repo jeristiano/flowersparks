@@ -21,13 +21,7 @@ class Dashboard extends Backend
      */
     public function index()
     {
-        $seventtime = \fast\Date::unixtime('day', -7);
-        $paylist = $createlist = [];
-        for ($i = 0; $i < 7; $i++) {
-            $day = date("Y-m-d", $seventtime + ($i * 86400));
-            $createlist[$day] = mt_rand(20, 200);
-            $paylist[$day] = mt_rand(1, mt_rand(1, $createlist[$day]));
-        }
+
         $today = time();
         $thisYear = date('Y', $today);
         $hooks = config('addons.hooks');
@@ -36,6 +30,7 @@ class Dashboard extends Backend
         Config::parse($addonComposerCfg, "json", "composer");
         $config = Config::get("composer");
         $addonVersion = isset($config['version']) ? $config['version'] : __('Unknown');
+
 
         $calculate = new Calculate();
         $data = $calculate->preOrderCalculateData();
@@ -50,8 +45,8 @@ class Dashboard extends Backend
             'unsettleorder' => 132,
             'sevendnu' => '77%',
             'sevendau' => '77%',
-            'paylist' => $paylist,
-            'createlist' => $createlist,
+            'paylist' => $data['payorder']['paylist'],
+            'createlist' => $data['payorder']['createlist'],
             'addonversion' => $addonVersion,
             'uploadmode' => $uploadmode,
             'thisyear' => $thisYear
