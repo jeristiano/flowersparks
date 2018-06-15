@@ -45,7 +45,9 @@ class Order extends Backend
             if ($this->request->request('keyField')) {
                 return $this->selectpage();
             }
-            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams('create_time');
+            $sort='create_time';
+            $order='desc';
             $total = $this->model
                 ->with(['flower', 'user'])
                 ->where($where)

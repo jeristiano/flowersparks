@@ -39,17 +39,16 @@ class Dashboard extends Backend
             'totalaverageprice' => $data['totalaverageprice'],
             'totalorder' => $data['totalorder'],
             'totalorderamount' => $data['totalorderamount'],
-            'todayuserlogin' => 321,
-            'todayusersignup' => 430,
-            'todayorder' => 2324,
-            'unsettleorder' => 132,
-            'sevendnu' => '77%',
-            'sevendau' => '77%',
+            'totalamount' => $data['totalamount'],
+            'floweramount' => $data['floweramount'],
             'paylist' => $data['payorder']['paylist'],
             'createlist' => $data['payorder']['createlist'],
             'addonversion' => $addonVersion,
             'uploadmode' => $uploadmode,
-            'thisyear' => $thisYear
+            'thisyear' => $thisYear,
+            'maxsubtotal'=>$data['maxsubtotal'],
+            'recentsubtotal'=>$data['recentsubtotal'],
+            'recentamount'=>$data['recentamount']
         ]);
 
         return $this->view->fetch();
