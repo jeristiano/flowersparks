@@ -67,8 +67,8 @@ class Calculate
     public function countAveragePriceThisYear()
     {
         $thisYearUnix = self::thisYearUnix();
-        return Order::where('create_time', '>=', $thisYearUnix)->avg('price');
-
+        $price= Order::where('create_time', '>=', $thisYearUnix)->avg('price');
+        return round($price,2);
     }
 
     private static function thisYearUnix()

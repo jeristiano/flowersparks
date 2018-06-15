@@ -80,12 +80,12 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                 //Orderdata.createdata.push(amount);
                 //Orderdata.paydata.push(Math.floor(Math.random() * amount) + 1);
                 //按自己需求可以取消这个限制
-                if (Orderdata.column.length >= 30) {
-                    //移除最开始的一条数据
-                    Orderdata.column.shift();
-                    Orderdata.paydata.shift();
-                    Orderdata.createdata.shift();
-                }
+                // if (Orderdata.column.length >= 30) {
+                //     //移除最开始的一条数据
+                //     Orderdata.column.shift();
+                //     Orderdata.paydata.shift();
+                //     Orderdata.createdata.shift();
+                // }
                 myChart.setOption({
                     xAxis: {
                         data: Orderdata.column
@@ -109,22 +109,22 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             });
 
             //读取FastAdmin的更新信息和社区动态
-            $.ajax({
-                url: Config.fastadmin.api_url + '/news/index',
-                type: 'post',
-                dataType: 'jsonp',
-                success: function (ret) {
-                    $("#news-list").html(Template("newstpl", {news: ret.newslist}));
-                }
-            });
-            $.ajax({
-                url: Config.fastadmin.api_url + '/forum/discussion',
-                type: 'post',
-                dataType: 'jsonp',
-                success: function (ret) {
-                    $("#discussion-list").html(Template("discussiontpl", {news: ret.discussionlist}));
-                }
-            });
+            // $.ajax({
+            //     url: Config.fastadmin.api_url + '/news/index',
+            //     type: 'post',
+            //     dataType: 'jsonp',
+            //     success: function (ret) {
+            //         $("#news-list").html(Template("newstpl", {news: ret.newslist}));
+            //     }
+            // });
+            // $.ajax({
+            //     url: Config.fastadmin.api_url + '/forum/discussion',
+            //     type: 'post',
+            //     dataType: 'jsonp',
+            //     success: function (ret) {
+            //         $("#discussion-list").html(Template("discussiontpl", {news: ret.discussionlist}));
+            //     }
+            // });
         }
     };
 
