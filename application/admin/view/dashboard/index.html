@@ -136,7 +136,12 @@
 
                 <div class="row">
                     <div class="box box-success">
-                        <div class="box-header"><h4 class="box-title">{:__('this_year')}({$thisyear})</h4></div>
+                        <div class="box-header">
+                            <h4 class="box-title">{:__('this_year')}({$thisyear})</h4>
+                            <h5
+                                    style="margin-top: 0px;float:right">最近更新：{$lastupdatetime|date='Y-m-d H:i:s',
+                                ###}</h5>
+                        </div>
                     </div>
 
                      <div class="col-sm-3 col-xs-6">
@@ -158,15 +163,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
-                            <div class="sm-st-info">
-                                <span>{$totalorder}</span>
-                                {:__('Total order')}
-                            </div>
-                        </div>
-                    </div>
+                    <!--<div class="col-sm-3 col-xs-6">-->
+                        <!--<div class="sm-st clearfix">-->
+                            <!--<span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>-->
+                            <!--<div class="sm-st-info">-->
+                                <!--<span>{$totalorder}</span>-->
+                                <!--{:__('Total order')}-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
                             <span class="sm-st-icon st-green"><i class="fa fa-calculator"></i></span>
@@ -252,7 +257,7 @@
                                 <div class="ibox-content">
                                     <h1 class="no-margins">{$maxsubtotal.subtotal}</h1>
                                     <small>{:__('Comment count')} :
-                                        {$maxsubtotal.create_time|date="Y-m-d",###}</small>
+                                        {$maxsubtotal.fctime}</small>
                                 </div>
                             </div>
                         </div>

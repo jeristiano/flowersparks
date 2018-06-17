@@ -26,6 +26,8 @@ class Calculate
             $data['maxsubtotal'] = $this->countMaxAmountThisYear();
             $data['recentsubtotal'] = $this->count7DaysSubtotal();
             $data['recentamount'] = $this->count7DaysAmount();
+            $data['recentamount'] = $this->count7DaysAmount();
+            $data['lastupdatetime'] = time();
             Cache::set($this->cache, $data, 3600);
             return $data;
         } else {
@@ -47,6 +49,7 @@ class Calculate
         $data['maxsubtotal'] = $this->countMaxAmountThisYear();
         $data['recentsubtotal'] = $this->count7DaysSubtotal();
         $data['recentamount'] = $this->count7DaysAmount();
+        $data['lastupdatetime'] = time();
         return Cache::set($this->cache, $data, 3600);
     }
 
@@ -147,7 +150,9 @@ class Calculate
         $timeStamp = self::thisYearUnix();
         $data = Db::name('order')
             ->where('create_time', '>=', $timeStamp)
-            ->field('max(subtotal) as subtotal,create_time')
+            ->field('sum(subtotal) as subtotal,FROM_UNIXTIME(create_time, \'%Y-%m-%d\')as fctime')
+            ->group('fctime')
+            ->order('subtotal','desc')
             ->find();
         return $data;
     }

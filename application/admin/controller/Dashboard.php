@@ -48,7 +48,8 @@ class Dashboard extends Backend
             'thisyear' => $thisYear,
             'maxsubtotal'=>$data['maxsubtotal'],
             'recentsubtotal'=>$data['recentsubtotal'],
-            'recentamount'=>$data['recentamount']
+            'recentamount'=>$data['recentamount'],
+            'lastupdatetime'=>$data['lastupdatetime']
         ]);
 
         return $this->view->fetch();
