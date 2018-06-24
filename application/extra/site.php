@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => 'FastAdmin',
+  'name' => '匡氏花园',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
