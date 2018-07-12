@@ -4,6 +4,8 @@ namespace app\admin\controller;
 
 use app\common\controller\Backend;
 use \app\admin\model\Category;
+use think\Request;
+
 /**
  * 花卉管理
  * @icon fa fa-circle-o
@@ -73,9 +75,10 @@ class Flower extends Backend
 
     public function add()
     {
-        $column=Category::where('type','=','flower')->column('id,name');
+        $column = Category::where('type', '=', 'flower')->column('id,name');
         $grouplist = build_select('row[cate_id]', $column, '0', ['class' => 'form-control selectpicker']);
         $this->view->assign('cagegoryList', $grouplist);
         return parent::add();
     }
+
 }

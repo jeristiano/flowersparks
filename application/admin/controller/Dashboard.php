@@ -15,7 +15,6 @@ use think\Config;
 class Dashboard extends Backend
 {
 
-    //todo 开始开发统计功能
     /**
      * 查看
      */

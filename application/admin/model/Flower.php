@@ -16,11 +16,6 @@ class Flower extends Model
     protected $createTime = 'createtime';
     protected $updateTime = 'updatetime';
     
-    // 追加属性
-    protected $append = [
-
-    ];
-
 
     public function category()
     {
