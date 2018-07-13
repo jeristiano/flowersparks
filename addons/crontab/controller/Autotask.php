@@ -48,6 +48,7 @@ class Autotask extends Controller
         {
             mkdir($logDir, 0755);
         }
+	Log::info('zheshiyigecrontralb');
         //筛选未过期且未完成的任务
         $crontabList = Crontab::where('status', '=', 'normal')->order('weigh desc,id desc')->select();
         foreach ($crontabList as $crontab)

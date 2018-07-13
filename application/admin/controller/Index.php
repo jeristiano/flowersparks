@@ -29,6 +29,7 @@ class Index extends Backend
      */
     public function index()
     {
+	//return dump(1);
         //左侧菜单
         $menulist = $this->auth->getSidebar([
             'dashboard' => 'hot',

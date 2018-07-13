@@ -1,3 +1,6 @@
 /runtime/*
 .idea
+/vendor/
+/public/uploads/
+.env
 
