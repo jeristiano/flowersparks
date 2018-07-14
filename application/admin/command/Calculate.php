@@ -26,9 +26,9 @@ class Calculate extends Command
     {
         $data = (new CalculateModel())->updateCalculateCache();
         if ($data == false) {
-            throw new Exception("calculate cache  update failed!");
+            throw new Exception("统计数据更新失败");
         }
-        $output->info("calculate cache  update successed!");
+        $output->info("统计数据更新成功");
     }
 
 }

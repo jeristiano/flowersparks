@@ -18,11 +18,11 @@ return [
     // 服务器地址
     'hostname'        => Env::get('database.hostname', '127.0.0.1'),
     // 数据库名
-    'database'        => Env::get('database.database', 'flowerspark'),
+    'database'        => Env::get('database.database', 'root'),
     // 用户名
-    'username'        => Env::get('database.username', 'flowerspark'),
+    'username'        => Env::get('database.username', 'root'),
     // 密码
-    'password'        => Env::get('database.password', 'kuang1988710'),
+    'password'        => Env::get('database.password', 'root'),
     // 端口
     'hostport'        => Env::get('database.hostport', '3306'),
     // 连接dsn
