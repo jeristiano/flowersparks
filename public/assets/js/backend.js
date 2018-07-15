@@ -228,6 +228,24 @@ define(['fast', 'template', 'moment'], function (Fast, Template, Moment) {
             //tooltip和popover
             $('body').tooltip({selector: '[data-toggle="tooltip"]'});
             $('body').tooltip({selector: '[data-toggle="popover"]'});
+
+            //定义初始化信息提示toastr
+            if(Config.msgHandler!=null){
+                var msgObj=Config.msgHandler;
+                if(msgObj.info){
+                    Toastr.info(Config.msgHandler.info);
+                    return ;
+                }
+                if(msgObj.success){
+                    Toastr.success(Config.msgHandler.success);
+                    return ;
+                }
+                if(msgObj.error){
+                    Toastr.error(Config.msgHandler.error);
+                    return ;
+                }
+                //
+            }
         }
     };
     Backend.api = $.extend(Fast.api, Backend.api);

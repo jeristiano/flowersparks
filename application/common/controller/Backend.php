@@ -121,11 +121,19 @@ class Backend extends Controller
             //检测是否登录
             if (!$this->auth->isLogin())
             {
+
                 Hook::listen('admin_nologin', $this);
                 $url = Session::get('referer');
                 $url = $url ? $url : $this->request->url();
-                $this->error(__('Please login first'), url('index/login', ['url' => $url]));
+                if(request()->isAjax()){
+                    $this->error(__('Please login first'),url('index/login',['url'=>'index/login']),['url' => $url]) ;
+                }
+              //  session('__MSG__.info',__('Please login first'));
+                $message=['__MSG__.info'=>__('Please login first')];
+                $this->redirect(url('index/login'),[],302,$message);
+               // $this->error(__('Please login first'), url('index/login', ));
             }
+
             // 判断是否需要验证权限
             if (!$this->auth->match($this->noNeedRight))
             {
@@ -176,7 +184,8 @@ class Backend extends Controller
 
         // 上传信息配置后
         Hook::listen("upload_config_init", $upload);
-
+        //弹窗获取
+        $toastrmsg=$this->messageHandle();
         // 配置信息
         $config = [
             'site'           => array_intersect_key($site, array_flip(['name', 'indexurl', 'cdnurl', 'version', 'timezone', 'languages'])),
@@ -188,7 +197,8 @@ class Backend extends Controller
             'moduleurl'      => rtrim(url("/{$modulename}", '', false), '/'),
             'language'       => $lang,
             'fastadmin'      => Config::get('fastadmin'),
-            'referer'        => Session::get("referer")
+            'referer'        => Session::get("referer"),
+            'msgHandler'=>$toastrmsg
         ];
         $config = array_merge($config, Config::get("view_replace_str"));
 
@@ -486,4 +496,17 @@ class Backend extends Controller
         return json(['list' => $list, 'total' => $total]);
     }
 
+
+    /*
+     * 加载页面提示信息
+     * 使用二维数组,必须以__MSG__为开始
+     */
+    protected function messageHandle()
+    {
+        if(Session::has('__MSG__')){
+            $msg = Session::pull('__MSG__');
+            return $msg;
+        };
+        return null;
+    }
 }
