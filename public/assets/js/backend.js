@@ -231,6 +231,8 @@ define(['fast', 'template', 'moment'], function (Fast, Template, Moment) {
 
             //定义初始化信息提示toastr
             if(Config.msgHandler!=null){
+                //配置Toastr的参数
+                Toastr.options.positionClass = Config.actionname === 'index' ? "toast-top-right-index" : "toast-top-center";
                 var msgObj=Config.msgHandler;
                 if(msgObj.info){
                     Toastr.info(Config.msgHandler.info);
