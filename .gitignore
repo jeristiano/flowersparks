@@ -1,6 +1,5 @@
 /runtime/*
 .idea
-/vendor
 /public/uploads
 .env
 .user.ini
